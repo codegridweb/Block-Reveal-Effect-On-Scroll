@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Block Reveal Effect On Scroll</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="smooth-scroll-wrapper">
+            <div class="content">
+                <div class="container">
+                    <h1 class="text">United Athle 2020</h1>
+                    <div class="img">
+                        <img src="img-one.jpg" alt="" />
+                    </div>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat esse
+                        explicabo porro impedit nemo dolore incidunt dolores distinctio numquam
+                        autem.
+                    </p>
+                </div>
+                <div class="container">
+                    <h1 class="text">Enemey of boring</h1>
+                    <div class="img">
+                        <img src="img-two.jpg" alt="" />
+                    </div>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ut quis
+                        quaerat error soluta. Provident tempora omnis distinctio quibusdam minus
+                        nesciunt sunt.
+                    </p>
+                </div>
+
+                <div class="container">
+                    <h1 class="text">(R)evolution high</h1>
+                    <div class="img">
+                        <img src="img-three.jpg" alt="" />
+                    </div>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate illum
+                        sequi enim fugiat, temporibus tempore veritatis minus maxime, voluptates
+                        tempora similique vel. Tempora harum pariatur ipsa.
+                    </p>
+                </div>
+                <div class="container">
+                    <h1 class="text">Groove recruit 19</h1>
+                    <div class="img">
+                        <img src="img-four.jpg" alt="" />
+                    </div>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam rem labore
+                        fuga dolorum ea obcaecati est, voluptates ipsum tempore voluptate.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script>
+            const body = document.body,
+                scrollWrap = document.getElementsByClassName("smooth-scroll-wrapper")[0],
+                height = scrollWrap.getBoundingClientRect().height - 1,
+                speed = 0.04;
+
+            var offset = 0;
+
+            body.style.height = Math.floor(height) + "px";
+
+            function smoothScroll() {
+                offset += (window.pageYOffset - offset) * speed;
+
+                var scroll = "translateY(-" + offset + "px) translateZ(0)";
+                scrollWrap.style.transform = scroll;
+
+                callScroll = requestAnimationFrame(smoothScroll);
+            }
+
+            smoothScroll();
+
+            $(function () {
+                var elements = $(".text, .img").toArray();
+                $(window).scroll(function () {
+                    elements.forEach(function (item) {
+                        if ($(this).scrollTop() >= $(item).offset().top - 400) {
+                            $(item).addClass("reveal");
+                        }
+                    });
+                });
+                elements.forEach(function (item) {
+                    if ($(this).scrollTop() >= $(item).offset().top - 400) {
+                        $(item).addClass("reveal");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
